@@ -18,7 +18,7 @@ import { reducers } from './reducers';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    GameModule,
+    GameModule, // sort of like setting a reference to a DLL in c#
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument()
   ],
