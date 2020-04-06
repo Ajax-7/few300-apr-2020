@@ -26,5 +26,33 @@ const selectLastGuess = createSelector(selectGameBranch, game => game.guess);
 export const selectGameWon = createSelector(
   selectSecretNumber, // -> number that is the secret number (secret)
   selectLastGuess, // -> number that is the last guess (guess)
-  (secret, guess) => secret === guess
+  (secret, guess) => {
+    if (isNull(secret) || isNull(guess)) { return false; }
+    return secret === guess;
+  }
 );
+
+// Too low?
+export const selectGuessTooLow = createSelector(
+  selectGameWon,
+  selectSecretNumber,
+  selectLastGuess,
+  (youWon, secret, guess) => {
+    if (youWon) { return false; }
+    return secret > guess;
+  }
+);
+// Too High?
+export const selectGuessTooHigh = createSelector(
+  selectGameWon,
+  selectSecretNumber,
+  selectLastGuess,
+  (youWon, secret, guess) => {
+    if (youWon) { return false; }
+    return secret < guess;
+  }
+);
+
+function isNull(arg: any) {
+  return arg === null;
+}

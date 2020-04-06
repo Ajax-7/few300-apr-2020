@@ -15,5 +15,9 @@
            #guess>
     <button class="btn btn-primary"
             (click)="takeAGuess(guess)">Guess</button>
+    <div>
+      <p *ngIf="tooLow$ | async">Your guess was too low!</p>
+      <p *ngIf="tooHigh$ | async">Your guess was too high!</p>
+    </div>
   </div>
 </div>
