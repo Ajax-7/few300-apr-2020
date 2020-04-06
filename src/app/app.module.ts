@@ -6,7 +6,9 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavComponent } from './components/nav/nav.component';
 import { GameModule } from './features/game/game.module';
-
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { reducers } from './reducers';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,9 @@ import { GameModule } from './features/game/game.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    GameModule
+    GameModule,
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [],
   bootstrap: [AppComponent]
