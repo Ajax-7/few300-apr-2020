@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { GameState, selectGameWon, selectGuessTooLow, selectGuessTooHigh } from './reducers';
+import { GameState, selectGameWon, selectGuessTooLow, selectGuessTooHigh, selectGameOverOutOfGuesses } from './reducers';
 import * as actions from './actions/game.actions';
 import { Observable } from 'rxjs';
 @Component({
@@ -13,12 +13,14 @@ export class GameComponent implements OnInit {
   youWin$: Observable<boolean>;
   tooLow$: Observable<boolean>;
   tooHigh$: Observable<boolean>;
+  gameOverOutOfGuesses$: Observable<boolean>;
   constructor(private store: Store<GameState>) { }
 
   ngOnInit(): void {
     this.youWin$ = this.store.select(selectGameWon);
     this.tooLow$ = this.store.select(selectGuessTooLow);
     this.tooHigh$ = this.store.select(selectGuessTooHigh);
+    this.gameOverOutOfGuesses$ = this.store.select(selectGameOverOutOfGuesses);
   }
 
   startTheGame() {

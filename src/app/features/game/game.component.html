@@ -6,8 +6,12 @@
      class="alert alert-success">
   <h2>YOU WIN! YOU ARE SO AWESOME!</h2>
 </div>
+<div *ngIf="gameOverOutOfGuesses$ | async"
+     class="alert alert-danger">
+  <h2>YOU LOSE!!! BWAHAHA</h2>
+</div>
 
-<div>
+<div *ngIf="!(gameOverOutOfGuesses$ | async)">
   <div class="form-group">
     <label for="guess">Guess</label>
     <input class="form-control"

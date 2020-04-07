@@ -18,14 +18,23 @@ export const reducers: ActionReducerMap<GameState> = {
 const selectGameFeature = createFeatureSelector<GameState>(featureName);
 // 2. Selector per "branch" of the state.
 const selectGameBranch = createSelector(selectGameFeature, feature => feature.game);
+const selectGuessCountBranch = createSelector(
+  selectGameFeature,
+  feature => feature.guessCount);
+
 
 // 3. (optional) "Helpers"
 const selectSecretNumber = createSelector(selectGameBranch, game => game.secretNumber);
 const selectLastGuess = createSelector(selectGameBranch, game => game.guess);
-
+const selectGuessCount = createSelector(selectGuessCountBranch, g => g.count);
 // 4. What the components need.
 
 // TODO: We need one that says we won! (secret === guess)
+
+export const selectGameOverOutOfGuesses = createSelector(
+  selectGuessCount,
+  c => c === 3
+);
 export const selectGameWon = createSelector(
   selectSecretNumber, // -> number that is the secret number (secret)
   selectLastGuess, // -> number that is the last guess (guess)
