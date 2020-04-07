@@ -1,13 +1,16 @@
 export const featureName = 'gameFeature';
 import * as fromGuessingGame from './game.reducer';
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import * as fromGuessCount from './guess-count.reducer';
+import { createFeatureSelector, createSelector, ActionReducerMap } from '@ngrx/store';
 
 export interface GameState {
   game: fromGuessingGame.GuessingGameState;
+  guessCount: fromGuessCount.GuessCountState;
 }
 
-export const reducers = {
-  game: fromGuessingGame.reducer
+export const reducers: ActionReducerMap<GameState> = {
+  game: fromGuessingGame.reducer,
+  guessCount: fromGuessCount.reducer
 };
 
 
