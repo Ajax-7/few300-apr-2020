@@ -23,12 +23,12 @@ const selectSongsSortBranch = createSelector(selectMusicFeature, f => f.sort);
 
 // 3. Helpers
 const { selectAll: selectSongEntityArray } = fromSongs.adapter.getSelectors(selectSongsBranch);
-const selectSortingBy = createSelector(selectSongsSortBranch, b => b.sortBy);
 
 // 4. For the components.
 
 // TODO: SongListModel[] for the SongListComponent
 
+export const selectSortingBy = createSelector(selectSongsSortBranch, b => b.sortBy);
 export const selectSongListModel = createSelector(
   selectSongEntityArray,
   selectSortingBy,

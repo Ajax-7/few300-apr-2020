@@ -1,4 +1,5 @@
-import { createReducer, Action } from '@ngrx/store';
+import { createReducer, Action, on } from '@ngrx/store';
+import { sortBy } from '../actions/sort.actions';
 
 export interface SongsSortState {
   sortBy: 'title' | 'artist';
@@ -10,7 +11,8 @@ const initialState: SongsSortState = {
 
 
 const myReducer = createReducer(
-  initialState
+  initialState,
+  on(sortBy, (s, a) => ({ sortBy: a.by }))
 );
 
 export function reducer(state: SongsSortState, action: Action) {

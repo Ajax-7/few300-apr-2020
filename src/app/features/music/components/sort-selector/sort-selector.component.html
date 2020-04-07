@@ -1,1 +1,12 @@
-<p>sort-selector works!</p>
+<div class="btn-group"
+     role="group"
+     aria-label="Basic example">
+  <button type="button"
+          [disabled]="(sortingBy$ | async) === 'title'"
+          (click)="sort('title')"
+          class="btn btn-secondary">Sort by Title</button>
+  <button type="button"
+          [disabled]="(sortingBy$ | async) === 'artist'"
+          (click)="sort('artist')"
+          class="btn btn-secondary">Sort by Artist</button>
+</div>
