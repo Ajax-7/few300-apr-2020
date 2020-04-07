@@ -26,7 +26,7 @@ const initialState: SongState = {
       id: '2', title: 'Like a Prayer', artist: 'Madonna', album: 'Like a Prayer', year: 1983
     },
     3: {
-      id: '3', title: 'Cassavetes', artist: 'Fugzi', album: 'In on the Kill Taker', year: 1992
+      id: '3', title: 'Cassavetes', artist: 'Fugazi', album: 'In on the Kill Taker', year: 1992
     }
   }
 

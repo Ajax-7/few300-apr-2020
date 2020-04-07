@@ -7,6 +7,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { featureName, reducers } from './reducers';
 import { SortSelectorComponent } from './components/sort-selector/sort-selector.component';
+import { EffectsModule } from '@ngrx/effects';
+import { SortEffects } from './effects/sort.effects';
 
 const routes: Routes = [
   {
@@ -30,7 +32,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature(featureName, reducers)
+    StoreModule.forFeature(featureName, reducers),
+    EffectsModule.forFeature([SortEffects])
   ]
 })
 export class MusicModule { }
