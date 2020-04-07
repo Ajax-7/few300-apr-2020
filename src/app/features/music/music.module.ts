@@ -6,6 +6,7 @@ import { SongEntryComponent } from './components/song-entry/song-entry.component
 import { Routes, RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { featureName, reducers } from './reducers';
+import { SortSelectorComponent } from './components/sort-selector/sort-selector.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [MusicComponent, SongListComponent, SongEntryComponent],
+  declarations: [MusicComponent, SongListComponent, SongEntryComponent, SortSelectorComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
