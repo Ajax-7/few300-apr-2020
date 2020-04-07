@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SongListModel } from '../../models';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { MusicState, selectSongListModel } from '../../reducers';
 
 @Component({
   selector: 'app-song-list',
@@ -8,13 +11,11 @@ import { SongListModel } from '../../models';
 })
 export class SongListComponent implements OnInit {
 
-  model: SongListModel[] = [
-    { id: '1', title: 'Whip It', artist: 'DEVO', album: 'Freedom of Choice', year: 1986 },
-    { id: '2', title: 'Prelude', artist: 'Dick Wagner', album: 'Parsifal', year: 1863 }
-  ];
-  constructor() { }
+  model$: Observable<SongListModel[]>;
+  constructor(private store: Store<MusicState>) { }
 
   ngOnInit(): void {
+    this.model$ = this.store.select(selectSongListModel);
   }
 
 }
