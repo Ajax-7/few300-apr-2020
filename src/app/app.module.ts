@@ -9,6 +9,7 @@ import { GameModule } from './features/game/game.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers } from './reducers';
+import { MusicModule } from './features/music/music.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,8 +18,9 @@ import { reducers } from './reducers';
   ],
   imports: [
     BrowserModule,
+    MusicModule, // PUT ROUTING MODULES BEFORE APP ROUTING MODULE
     AppRoutingModule,
-    GameModule, // sort of like setting a reference to a DLL in c#
+    GameModule, // sort of like setting a reference to a DLL in c#,
     StoreModule.forRoot(reducers), // "CombineReducers"
     StoreDevtoolsModule.instrument()
   ],
