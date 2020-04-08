@@ -13,7 +13,16 @@ export const songAdded = createAction(
   })
 );
 
+export const songAddedSuccessfully = createAction(
+  '[music] song added successfully',
+  props<{ oldId: string, payload: SongEntity }>()
+);
 
+
+export const songAddedFailure = createAction(
+  '[music] failure on adding song',
+  props<{ errorMessage: string, payload: SongEntity }>()
+);
 export const loadSongs = createAction(
   '[music] load the songs'
 );

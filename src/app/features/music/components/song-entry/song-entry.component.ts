@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from
 import { Store } from '@ngrx/store';
 import { MusicState } from '../../reducers';
 import { songAdded } from '../../actions/song.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-song-entry',
@@ -12,7 +13,7 @@ import { songAdded } from '../../actions/song.actions';
 export class SongEntryComponent implements OnInit {
 
   songForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private store: Store<MusicState>) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private store: Store<MusicState>) { }
 
   ngOnInit(): void {
     this.songForm = this.formBuilder.group({
@@ -27,11 +28,19 @@ export class SongEntryComponent implements OnInit {
   }
   get title() { return this.songForm.get('title'); }
   get artist() { return this.songForm.get('artist'); }
-  submit(elToFocus: HTMLInputElement) {
+
+  submit(elToFocus: HTMLInputElement, stay: boolean) {
+
     this.store.dispatch(songAdded({ ...this.songForm.value }));
-    this.songForm.reset();
-    elToFocus.focus();
+    if (stay) {
+      this.songForm.reset();
+      elToFocus.focus();
+    } else {
+      // take them to the song list.
+      this.router.navigate(['/music/songs']);
+    }
   }
+
 
 }
 

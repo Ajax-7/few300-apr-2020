@@ -1,5 +1,5 @@
 <form [formGroup]="songForm"
-      (ngSubmit)="submit(focusme)">
+      (ngSubmit)="submit(focusme, addmore.checked)">
   <div class="form-group">
     <label for="title">Title</label>
     <input class="form-control"
@@ -38,6 +38,14 @@
            name="year"
            formControlName="year"
            type="number">
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox"
+           #addmore
+           class="form-check-input"
+           id="exampleCheck1">
+    <label class="form-check-label"
+           for="exampleCheck1">Add more?</label>
   </div>
   <input type="submit"
          [disabled]="!songForm.valid"
