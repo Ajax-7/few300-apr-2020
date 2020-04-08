@@ -14,4 +14,10 @@
        [routerLinkActive]="['active']"
        [routerLink]="['music']">Music Library</a>
   </li>
+  <li class="nav-item"
+      *ngIf="isAdmin$ | async">
+    <a class="nav-link"
+       [routerLinkActive]="['active']"
+       [routerLink]="['admin']">Super Secret Admin Stuff</a>
+  </li>
 </ul>
