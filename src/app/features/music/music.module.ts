@@ -9,7 +9,7 @@ import { featureName, reducers } from './reducers';
 import { SortSelectorComponent } from './components/sort-selector/sort-selector.component';
 import { EffectsModule } from '@ngrx/effects';
 import { SortEffects } from './effects/sort.effects';
-
+import { ReactiveFormsModule } from '@angular/forms';
 const routes: Routes = [
   {
     path: 'music',
@@ -33,7 +33,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(featureName, reducers),
-    EffectsModule.forFeature([SortEffects])
+    EffectsModule.forFeature([SortEffects]),
+    ReactiveFormsModule
   ]
 })
 export class MusicModule { }
