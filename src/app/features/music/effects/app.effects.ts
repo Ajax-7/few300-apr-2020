@@ -10,6 +10,13 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class AppEffects {
 
+  sendErrorToApp$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(songActions.songAddedFailure),
+      map(err => appActions.applicationFeatureError({ feature: 'music', errorMessage: err.errorMessage }))
+    )
+  );
+
   loadSortBy$ = createEffect(() =>
     this.actions$.pipe(
       ofType(appActions.applicationStarted),

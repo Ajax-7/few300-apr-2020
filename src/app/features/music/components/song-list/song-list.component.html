@@ -1,19 +1,27 @@
-<div *ngIf="(model$ | async)?.length === 0"
-     class="alert alert-danger">
-  <h3>Looks like you don't have any songs! <a [routerLink]="[ '..', 'new-song']"
-       class="btn btn-primary">Go add some!</a>
-    <a [routerLink]="[ '/','game']"
-       class="btn btn-primary">Or Maybe Play a Rad Guessing Game</a>
-  </h3>
+<div class="alert alert-info"
+     *ngIf="!(loaded$ | async)">
+  <img src="https://media.giphy.com/media/LyuWqvhAU93XO/giphy.gif"
+       alt="Your Data Is Loading">
 </div>
-<div *ngIf="(model$ | async)?.length > 0">
-  <app-sort-selector></app-sort-selector>
-  <div class="card"
-       *ngFor="let song of model$ | async">
-    <div class="card-body">
-      <h5 class="card-title">{{ song.title }}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">by {{ song.artist}}</h6>
-      <p class="card-text">On the album {{ song.album}} from {{ song.year }}</p>
+<div *ngIf="loaded$ | async">
+
+  <div *ngIf="(model$ | async)?.length === 0"
+       class="alert alert-danger">
+    <h3>Looks like you don't have any songs! <a [routerLink]="[ '..', 'new-song']"
+         class="btn btn-primary">Go add some!</a>
+      <a [routerLink]="[ '/','game']"
+         class="btn btn-primary">Or Maybe Play a Rad Guessing Game</a>
+    </h3>
+  </div>
+  <div *ngIf="(model$ | async)?.length > 0">
+    <app-sort-selector></app-sort-selector>
+    <div class="card"
+         *ngFor="let song of model$ | async">
+      <div class="card-body">
+        <h5 class="card-title">{{ song.title }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">by {{ song.artist}}</h6>
+        <p class="card-text">On the album {{ song.album}} from {{ song.year }}</p>
+      </div>
     </div>
   </div>
 </div>

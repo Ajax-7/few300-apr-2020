@@ -12,11 +12,13 @@ import { reducers } from './reducers';
 import { MusicModule } from './features/music/music.module';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
+import { ErrorDisplayComponent } from './components/error-display/error-display.component';
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    NavComponent
+    NavComponent,
+    ErrorDisplayComponent
   ],
   imports: [
     BrowserModule,
