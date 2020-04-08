@@ -1,26 +1,49 @@
-<div>
+<form [formGroup]="songForm"
+      (ngSubmit)="submit(focusme)">
   <div class="form-group">
     <label for="title">Title</label>
     <input class="form-control"
+           #focusme
+           formControlName="title"
            name="title">
+    <div class="alert alert-danger"
+         *ngIf="title.invalid && (title.dirty || title.touched)">
+      <p *ngIf="title.errors.required">The Title is Required</p>
+      <p *ngIf="title.errors.maxlength">The title must be 30 characters or less</p>
+    </div>
   </div>
   <div class="form-group">
     <label for="artist">Artist</label>
     <input class="form-control"
+           formControlName="artist"
            name="artist">
+    <div class="alert alert-danger"
+         *ngIf="artist.invalid && (artist.dirty || artist.touched)">
+      <p *ngIf="artist.errors.required">The Artist is Required</p>
+      <p *ngIf="artist.errors.badband">Nope. Not them.</p>
+    </div>
   </div>
+
+
   <div class="form-group">
     <label for="album">Album</label>
     <input class="form-control"
+           formControlName="album"
            name="album">
+
   </div>
   <div class="form-group">
     <label for="year">Year</label>
     <input class="form-control"
            name="year"
+           formControlName="year"
            type="number">
   </div>
   <input type="submit"
+         [disabled]="!songForm.valid"
          class="btn btn-primary"
          value="Add This Song">
-</div>
+</form>
+
+<pre>{{ songForm.value | json }}</pre>
+<pre> {{ songForm.valid }}</pre>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-song-entry',
@@ -7,9 +8,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SongEntryComponent implements OnInit {
 
-  constructor() { }
+  songForm: FormGroup;
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.songForm = this.formBuilder.group({
+      title: ['', [Validators.required, Validators.maxLength(30)]],
+      artist: ['', [Validators.required, bandNotAllowedValidator(/nickleback/i)]],
+      album: ['', Validators.required],
+      year: [2020, [Validators.max(2030), Validators.min(1800)]]
+    });
+
+    const album = this.songForm.get('album');
+    album.valueChanges.subscribe(change => console.log(change));
+  }
+  get title() { return this.songForm.get('title'); }
+  get artist() { return this.songForm.get('artist'); }
+  submit(elToFocus: HTMLInputElement) {
+    console.log('Submitting...');
+    console.log(this.songForm.value);
+    this.songForm.reset();
+    elToFocus.focus();
   }
 
+}
+
+function bandNotAllowedValidator(bandName: RegExp): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const badBand = bandName.test(control.value);
+    return badBand ? { badband: { value: control.value } } : null;
+  };
 }
