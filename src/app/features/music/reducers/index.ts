@@ -10,12 +10,14 @@ export interface MusicState {
   songs: fromSongs.SongState;
   sort: fromSongSort.SongsSortState;
   uiHints: fromUiHints.UiHintsState;
+
 }
 
 export const reducers: ActionReducerMap<MusicState> = {
   songs: fromSongs.reducer,
   sort: fromSongSort.reducer,
-  uiHints: fromUiHints.reducer
+  uiHints: fromUiHints.reducer,
+
 };
 
 // 1. Feature selector

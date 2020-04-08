@@ -24,7 +24,8 @@ export class SongEntryComponent implements OnInit {
     });
 
     const album = this.songForm.get('album');
-    album.valueChanges.subscribe(change => console.log(change));
+    // album.valueChanges.subscribe(change => console.log(change));
+    this.songForm.valueChanges.subscribe(changs => console.log(changs));
   }
   get title() { return this.songForm.get('title'); }
   get artist() { return this.songForm.get('artist'); }

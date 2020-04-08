@@ -1,15 +1,18 @@
 import * as fromErrors from './errors.reducer';
 import * as fromAuth from './auth.reducer';
 import { createSelector } from '@ngrx/store';
+import { RouterState, routerReducer } from '@ngrx/router-store';
 
 export interface AppState {
   errors: fromErrors.ErrorsState;
   auth: fromAuth.AuthState;
+  router: RouterState.Minimal;
 }
 
 export const reducers = {
   errors: fromErrors.reducer,
-  auth: fromAuth.reducer
+  auth: fromAuth.reducer,
+  router: routerReducer
 };
 
 
