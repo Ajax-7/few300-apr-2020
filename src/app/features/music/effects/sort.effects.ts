@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as sortActions from '../actions/sort.actions';
 
-import * as appActions from '../../../actions/app.actions';
+
 import { tap, map, filter } from 'rxjs/operators';
 @Injectable()
 export class SortEffects {
 
   loadSortPreferences$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(appActions.applicationStarted),
+      ofType(sortActions.loadSortBy),
       map(() => localStorage.getItem('by')), // -> title, author | null
       filter(by => by !== null),
       filter(by => by === 'title' || by === 'author'), // validate the stuff.

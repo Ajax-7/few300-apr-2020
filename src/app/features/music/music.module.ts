@@ -10,6 +10,9 @@ import { SortSelectorComponent } from './components/sort-selector/sort-selector.
 import { EffectsModule } from '@ngrx/effects';
 import { SortEffects } from './effects/sort.effects';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AppEffects } from './effects/app.effects';
+import { HttpClientModule } from '@angular/common/http';
+import { SongEffects } from './effects/song.effects';
 const routes: Routes = [
   {
     path: 'music',
@@ -31,9 +34,10 @@ const routes: Routes = [
   declarations: [MusicComponent, SongListComponent, SongEntryComponent, SortSelectorComponent],
   imports: [
     CommonModule,
+    HttpClientModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(featureName, reducers),
-    EffectsModule.forFeature([SortEffects]),
+    EffectsModule.forFeature([AppEffects, SortEffects, SongEffects]),
     ReactiveFormsModule
   ]
 })

@@ -1,5 +1,6 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
-import { createReducer, Action } from '@ngrx/store';
+import { createReducer, Action, on } from '@ngrx/store';
+import * as songActions from '../actions/song.actions';
 
 export interface SongEntity {
   id: string;
@@ -15,24 +16,12 @@ export interface SongState extends EntityState<SongEntity> {
 
 export const adapter = createEntityAdapter<SongEntity>();
 
-// const initialState = adapter.getInitialState();
-const initialState: SongState = {
-  ids: ['1', '2', '3'],
-  entities: {
-    1: {
-      id: '1', title: 'Slow Ride', artist: 'Foghat', album: 'SloRide', year: 1981
-    },
-    2: {
-      id: '2', title: 'Like a Prayer', artist: 'Madonna', album: 'Like a Prayer', year: 1983
-    },
-    3: {
-      id: '3', title: 'Cassavetes', artist: 'Fugazi', album: 'In on the Kill Taker', year: 1992
-    }
-  }
+const initialState = adapter.getInitialState();
 
-};
 const reducerFunction = createReducer(
-  initialState
+  initialState,
+  on(songActions.songAdded, (s, a) => adapter.addOne(a.payload, s)),
+  on(songActions.loadedSongSuccessfully, (s, a) => adapter.setAll(a.payload, s))
 );
 
 export function reducer(state: SongState = initialState, action: Action) {
